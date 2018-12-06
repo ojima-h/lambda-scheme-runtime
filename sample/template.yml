@@ -1,0 +1,14 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Resources:
+  SampleFunction:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: scheme-sample
+      Handler: function.scm:handler
+      Runtime: provided
+      CodeUri: .
+      Timeout: 30
+      Layers:
+        - arn:aws:lambda:ap-northeast-1:203310964532:layer:scheme-runtime:5

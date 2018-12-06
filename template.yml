@@ -1,0 +1,11 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Resources:
+  SampleFunction:
+    Type: 'AWS::Serverless::LayerVersion'
+    Properties:
+      LayerName: scheme-runtime
+      Description: scheme (racket) runtime
+      ContentUri: build/runtime.zip
+      LicenseInfo: 'Available under the LGPL license.'
