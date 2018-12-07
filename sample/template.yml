@@ -9,6 +9,7 @@ Resources:
       Handler: function.scm:handler
       Runtime: provided
       CodeUri: .
-      Timeout: 30
+      MemorySize: 1024
+      Timeout: 600
       Layers:
         - arn:aws:lambda:ap-northeast-1:203310964532:layer:scheme-runtime:5
