@@ -23,8 +23,8 @@
     #:data (with-output-to-string
             (lambda ()
               (write-json
-                (make-hasheq (list (cons 'errorMessage (exn-message error))
-                                   '('errorType . "InitializeException"))))))
+                (hasheq 'errorMessage (exn-message error)
+                        'errorType "InitializeException"))))
     #:method "POST")
   (raise error))
 
@@ -37,8 +37,8 @@
       #:data (with-output-to-string
               (lambda ()
                 (write-json
-                  (make-hasheq (list (cons 'errorMessage (exn-message error))
-                                    '('errorType . "InvokeException"))))))
+                  (hasheq 'errorMessage (exn-message error)
+                          'errorType . "InvokeException"))))
       #:method "POST")
     (raise error)))
 
@@ -74,7 +74,7 @@
   (define requet-id (hash-ref headers "Lambda-Runtime-Aws-Request-Id"))
 
   (define event (read-json body))
-  (define context (make-hasheq '()))
+  (define context (hasheq))
 
   (define response (handler event context))
 
