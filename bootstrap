@@ -2,4 +2,4 @@
 
 runtime_dir=$(dirname $0)
 cd ${LAMBDA_TASK_ROOT}
-${runtime_dir}/racket/bin/racket -f ${runtime_dir}/runtime.scm
+${runtime_dir}/racket/bin/racket -f ${runtime_dir}/runtime.rkt

@@ -19,7 +19,7 @@ install: build/runtime/racket
 build: install
 	rm -f build/runtime.zip
 	(cd build/runtime && zip $(PWD)/build/runtime.zip -q -r .)
-	zip build/runtime.zip runtime.scm bootstrap
+	zip build/runtime.zip runtime.rkt bootstrap
 
 publish: build
 	aws lambda publish-layer-version --layer-name scheme-runtime --zip-file fileb://build/runtime.zip
