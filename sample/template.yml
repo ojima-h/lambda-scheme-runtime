@@ -6,10 +6,16 @@ Resources:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: scheme-sample
-      Handler: function.scm:handler
+      Handler: function.rkt:handler
       Runtime: provided
       CodeUri: .
       MemorySize: 1024
       Timeout: 600
       Layers:
         - arn:aws:lambda:ap-northeast-1:203310964532:layer:scheme-runtime:5
+      Events:
+        API:
+          Type: Api
+          Properties:
+            Path: /pythagorean-triples
+            Method: get

@@ -6,6 +6,8 @@
 ;;; generate the stream of all Pythagorean triples of positive integers, i.e.,
 ;;; the triples (i,j,k) such that i < j and i2 + j2 = k2.
 
+(require json)
+
 (define integers
   (stream-cons 0 (stream-map (lambda (x) (+ x 1)) integers)))
 (define integers+ (stream-rest integers))
@@ -43,6 +45,8 @@
       integers+)))
 
 (define (handler event context)
-  (let ((n (hash-ref event 'length)))
+  (let* ((n (string->number (hash-ref (hash-ref event 'queryStringParameters) 'length)))
+         (response (hash 'result (stream->list (stream-take pythagorean-triples n)))))
     (hash
-      'result (stream->list (stream-take pythagorean-triples n)))))
+      'headers (hash 'Content-Type "application/json")
+      'body (with-output-to-string (lambda () (write-json response))))))
